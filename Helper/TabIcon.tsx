@@ -11,13 +11,13 @@ type Props = {
 const TabIcon = ({ focused, image, text, icon }: Props) => {
   return (
     <View
-      className={`flex flex-col items-center justify-between h-full gap-y-1`}
+      className={`flex flex-col items-center justify-center h-full gap-y-2`}
     >
       {image && <Image source={image} className="w-6 h-6 aspect-square" />}
       {icon && icon}
       <Text
-        className={`text-sm text-white w-fit px-2 py-0.5 ${
-          focused ? "bg-[#273F4F] rounded-full " : ""
+        className={`text-sm text-secondary w-fit px-2 py-0.5 ${
+          focused ? "bg-tertiary rounded-full" : ""
         }`}
       >
         {text}

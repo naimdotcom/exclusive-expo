@@ -1,11 +1,15 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import { Image, Platform, Text, View } from "react-native";
+import { Platform } from "react-native";
 import TabIcon from "@/Helper/TabIcon";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Foundation from "@expo/vector-icons/Foundation";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 const homelogo = require("../../assets/images/icons/home-icon.png");
+
 const TabLayout = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
+  const isIOS = Platform.OS === "ios";
   return (
     <Tabs
       screenOptions={{
@@ -19,9 +23,14 @@ const TabLayout = () => {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          height: Platform.OS === "ios" ? 70 : 60,
+          height: isIOS ? 70 : 60,
           position: "absolute",
-          bottom: 20,
+          bottom: isIOS ? 25 : 10,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.8,
+          shadowRadius: 2,
+          paddingHorizontal: 5,
         },
         tabBarIconStyle: {
           width: "100%",
@@ -30,8 +39,8 @@ const TabLayout = () => {
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 50,
-          position: Platform.OS === "ios" ? "absolute" : "relative",
-          bottom: Platform.OS === "ios" ? "-50%" : 0,
+          position: isIOS ? "absolute" : "relative",
+          bottom: isIOS ? "-50%" : 0,
         },
       }}
     >
@@ -46,6 +55,24 @@ const TabLayout = () => {
       />
 
       <Tabs.Screen
+        name="(product)/product"
+        options={{
+          title: "Product",
+          tabBarIcon: ({ focused }) => {
+            return (
+              <TabIcon
+                focused={focused}
+                icon={
+                  <Foundation name="shopping-cart" size={20} color="white" />
+                }
+                text={"product"}
+              />
+            );
+          },
+        }}
+      />
+
+      <Tabs.Screen
         name="(signup)/signup"
         options={{
           title: "Signup",
@@ -53,20 +80,19 @@ const TabLayout = () => {
             <TabIcon
               focused={focused}
               text={"Signup"}
-              icon={<AntDesign name="user" size={18} color="white" />}
+              icon={<FontAwesome name="user" size={20} color="white" />}
             />
           ),
         }}
       />
-
       <Tabs.Screen
         name="(login)/login"
         options={{
-          title: "login",
+          title: "Login",
           tabBarIcon: ({ focused }) => (
             <TabIcon
               focused={focused}
-              text={"login"}
+              text={"Login"}
               icon={<AntDesign name="login" size={18} color="white" />}
             />
           ),

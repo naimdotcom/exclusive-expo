@@ -6,16 +6,6 @@ export default function RootLayout() {
     <>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" />
-        {/* <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="(tabs)/home"
-          options={{
-            headerShown: true,
-            title: "Home",
-            contentStyle: { paddingHorizontal: 8 },
-            headerTitleStyle: { color: "#FE7743" },
-          }}
-        /> */}
       </Stack>
     </>
   );
