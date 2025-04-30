@@ -6,11 +6,13 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Foundation from "@expo/vector-icons/Foundation";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { UserIcon } from "react-native-heroicons/solid";
+import { useIsIosStore } from "@/store/isIosStore";
+import { useAuthStore } from "@/store/AuthStore";
 const homelogo = require("../../assets/images/icons/home-icon.png");
 
 const TabLayout = () => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
-  const isIOS = Platform.OS === "ios";
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const isIos = useIsIosStore((state) => state.isIos);
   return (
     <Tabs
       screenOptions={{
@@ -24,9 +26,9 @@ const TabLayout = () => {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          height: isIOS ? 70 : 60,
+          height: isIos ? 70 : 60,
           position: "absolute",
-          bottom: isIOS ? 25 : 10,
+          bottom: isIos ? 25 : 10,
           shadowColor: "#000",
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.8,
@@ -40,8 +42,8 @@ const TabLayout = () => {
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 50,
-          position: isIOS ? "absolute" : "relative",
-          bottom: isIOS ? "-50%" : 0,
+          position: isIos ? "absolute" : "relative",
+          bottom: isIos ? "-50%" : 0,
         },
       }}
     >
@@ -84,7 +86,7 @@ const TabLayout = () => {
               icon={<FontAwesome name="user" size={20} color="white" />}
             />
           ),
-          href: isLoggedIn ? null : "/signup",
+          href: isAuth ? null : "/signup",
         }}
       />
       <Tabs.Screen
@@ -98,7 +100,7 @@ const TabLayout = () => {
               icon={<AntDesign name="login" size={18} color="white" />}
             />
           ),
-          href: isLoggedIn ? null : "/login",
+          href: isAuth ? null : "/login",
         }}
       />
 
@@ -113,7 +115,7 @@ const TabLayout = () => {
               icon={<UserIcon size={18} color="white" />}
             />
           ),
-          href: !isLoggedIn ? null : "/profile",
+          href: !isAuth ? null : "/profile",
         }}
       />
     </Tabs>
