@@ -5,6 +5,7 @@ import TabIcon from "@/Helper/TabIcon";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Foundation from "@expo/vector-icons/Foundation";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { UserIcon } from "react-native-heroicons/solid";
 const homelogo = require("../../assets/images/icons/home-icon.png");
 
 const TabLayout = () => {
@@ -83,6 +84,7 @@ const TabLayout = () => {
               icon={<FontAwesome name="user" size={20} color="white" />}
             />
           ),
+          href: isLoggedIn ? null : "/signup",
         }}
       />
       <Tabs.Screen
@@ -96,6 +98,22 @@ const TabLayout = () => {
               icon={<AntDesign name="login" size={18} color="white" />}
             />
           ),
+          href: isLoggedIn ? null : "/login",
+        }}
+      />
+
+      <Tabs.Screen
+        name="(profile)/profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              text={"Profile"}
+              icon={<UserIcon size={18} color="white" />}
+            />
+          ),
+          href: !isLoggedIn ? null : "/profile",
         }}
       />
     </Tabs>

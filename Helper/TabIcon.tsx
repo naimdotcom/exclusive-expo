@@ -5,7 +5,7 @@ type Props = {
   focused: boolean;
   image?: ImageSourcePropType;
   text: string;
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | any;
 };
 
 const TabIcon = ({ focused, image, text, icon }: Props) => {
